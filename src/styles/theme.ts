@@ -1,31 +1,62 @@
-import { createTheme } from "@mui/material/styles";
+import { createTheme, type PaletteMode } from "@mui/material/styles";
 
-const theme = createTheme({
-  typography: {
-    fontFamily: "Inter, sans-serif",
-  },
+// Define color palette for both modes
+const getDesignTokens = (mode: PaletteMode) => ({
   palette: {
-    text: {
-      primary: "#000", // Default text color
-      secondary: "#333", // Slightly lighter for secondary text
-    },
+    mode,
+    ...(mode === 'light'
+        ? {
+          // Light mode
+          background: {
+            default: '#FBFBFB',
+            paper: '#FBFBFB',
+          },
+          text: {
+            primary: '#000000',
+            secondary: '#767575',
+          },
+          divider: '#59525F',
+          custom: {
+            searchBar: '#D9D9D9',
+            navBorder: '#59525F',
+          },
+        }
+        : {
+          // Dark mode
+          background: {
+            default: '#120D16',
+            paper: '#120D16',
+          },
+          text: {
+            primary: '#FFFFFF',
+            secondary: '#B6B6B6',
+          },
+          divider: '#59525F',
+          custom: {
+            searchBar: '#2C2B35',
+            navBorder: '#59525F',
+          },
+        }),
+  },
+  typography: {
+    fontFamily: "Roboto, sans-serif",
   },
   components: {
     MuiButton: {
       styleOverrides: {
         root: {
-          backgroundColor: "#426B1F", // Default background color
-          color: "#fff", // Default text color
+          backgroundColor: "#426B1F",
+          color: "#fff",
           "&:hover": {
-            backgroundColor: "#388E3C", // Hover color
+            backgroundColor: "#388E3C",
           },
         },
         outlined: {
-          backgroundColor: "rgba(0, 0, 0, 0)", // Transparent background for outlined variant
+          backgroundColor: "transparent",
           border: "0px",
-          color: "#000", // Custom text color for outlined variant
+          color: mode === 'light' ? "#000000" : "#FFFFFF",
           "&:hover": {
-            backgroundColor: "#f6f6f6", // Light green background on hover
+            backgroundColor: mode === 'light' ? "#f6f6f6" : "#2a2530",
           },
         },
       },
@@ -33,4 +64,7 @@ const theme = createTheme({
   },
 });
 
-export default theme;
+// Create theme instance
+export const createAppTheme = (mode: PaletteMode) => {
+  return createTheme(getDesignTokens(mode));
+};
