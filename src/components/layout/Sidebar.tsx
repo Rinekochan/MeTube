@@ -30,7 +30,7 @@ const NavItem = styled(Box, {
     alignItems: 'center',
     justifyContent: collapsed ? 'center' : 'flex-start',
     margin: collapsed ? 'auto' : 'auto 8px',
-    padding: collapsed ? '12px 30px' : '16px 24px',
+    padding: collapsed ? '12px 30px' : '12px 20px 12px 12px',
     gap: collapsed ? '0px' : '8px',
     borderRadius: '16px',
     color: active ? theme.palette.text.active : theme.palette.text.secondary,

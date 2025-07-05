@@ -1,16 +1,12 @@
 import axios from 'axios';
 import type {SearchParams, SearchResults, VideoResponse} from "../types/types.ts";
 
-const API_KEY = import.meta.env.YOUTUBE_API_KEY;
+const API_KEY = import.meta.env.VITE_YOUTUBE_API_KEY;
 const BASE_URL = 'https://www.googleapis.com/youtube/v3';
 
 // Create an axios instance for Youtube API requests
 const youtubeApi = axios.create({
     baseURL: BASE_URL,
-    timeout: 10000,
-    headers: {
-        'Content-Type': 'application/json',
-    },
     params: {
         key: API_KEY,
     },
@@ -36,7 +32,7 @@ export const searchVideos = async (
                 id: item.id.videoId,
                 title: item.snippet.title,
                 description: item.snippet.description,
-                thumbnail: item.snippet.thumbnails.default.url,
+                thumbnailUrl: item.snippet.thumbnails.standard.url,
                 channelTitle: item.snippet.channelTitle,
                 publishedAt: item.snippet.publishedAt
             })),
@@ -66,7 +62,7 @@ export const getPopularVideos = async (
             id: item.id,
             title: item.snippet.title,
             description: item.snippet.description,
-            thumbnail: item.snippet.thumbnails.default.url,
+            thumbnailUrl: item.snippet.thumbnails.standard.url,
             channelTitle: item.snippet.channelTitle,
             publishedAt: item.snippet.publishedAt,
             viewCount: item.statistics.viewCount,

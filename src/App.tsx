@@ -15,7 +15,7 @@ const App = () => {
                 <Box sx={{display: 'flex', backgroundColor: 'theme.background.default', minHeight: '100vh'}}>
                     <Header/>
                     <Sidebar/>
-                    <Box component="main" sx={{flexGrow: 1, minHeight: '100vh'}}>
+                    <Box component="main" sx={{flexGrow: 1, minHeight: '100vh', ml: sidebarState.collapsed ? '64px' : '150px', mt: '64px', p: 4 }}>
                         <Routes>
                             <Route path={"/"} element={<HomePage/>}/>
                         </Routes>
