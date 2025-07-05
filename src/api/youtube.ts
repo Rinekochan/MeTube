@@ -51,7 +51,7 @@ export const getPopularVideos = async (
     try {
         const response = await youtubeApi.get('/videos', {
             params: {
-                part: 'snippet, statistics',
+                part: 'snippet,statistics',
                 chart: 'mostPopular',
                 maxResults: maxResults,
                 regionCode: 'AU', // Australia
@@ -82,7 +82,7 @@ export const getPopularVideosByCategory = async (
     try {
         const response = await youtubeApi.get('/videos', {
             params: {
-                part: 'snippet, statistics',
+                part: 'snippet,statistics',
                 chart: 'mostPopular',
                 maxResults: maxResults,
                 regionCode: 'AU', // Australia
@@ -94,7 +94,7 @@ export const getPopularVideosByCategory = async (
             id: item.id,
             title: item.snippet.title,
             description: item.snippet.description,
-            thumbnail: item.snippet.thumbnails.default.url,
+            thumbnailUrl: item.snippet.thumbnails.standard.url,
             channelTitle: item.snippet.channelTitle,
             publishedAt: item.snippet.publishedAt,
             viewCount: item.statistics.viewCount,

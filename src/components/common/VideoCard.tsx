@@ -70,7 +70,7 @@ const VideoCard = ({ video }: VideoCardProps) => {
                         WebkitLineClamp: 2,
                         WebkitBoxOrient: 'vertical',
                         lineHeight: '1.2em',
-                        height: '2.4em'
+                        height: 'auto'
                     }}
                 >
                     {video.title}
