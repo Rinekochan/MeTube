@@ -7,7 +7,7 @@ import "./App.css";
 import {ThemeContext} from "./context/ThemeContext.tsx";
 
 const ThemedApp = () => {
-    const [mode, setMode] = useState<PaletteMode>('light');
+    const [mode, setMode] = useState<PaletteMode>('dark');
 
     const colorMode = useMemo(
         () => ({
