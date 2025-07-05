@@ -6,6 +6,8 @@ export interface VideoResponse {
     thumbnailUrl: string;
     channelTitle: string;
     publishedAt: string;
+    viewCount?: string;
+    likeCount?: string;
 }
 
 // Type for Search Results
