@@ -14,8 +14,9 @@ const getDesignTokens = (mode: PaletteMode) => ({
           text: {
             primary: '#000000',
             secondary: '#767575',
+            active: '#FF0073'
           },
-          divider: '#59525F',
+          divider: '#767575',
           custom: {
             searchBar: '#D9D9D9',
             navBorder: '#59525F',
@@ -30,6 +31,7 @@ const getDesignTokens = (mode: PaletteMode) => ({
           text: {
             primary: '#FFFFFF',
             secondary: '#B6B6B6',
+            active: '#FFFFFF',
           },
           divider: '#59525F',
           custom: {

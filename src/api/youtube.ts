@@ -6,10 +6,14 @@ const BASE_URL = 'https://www.googleapis.com/youtube/v3';
 
 // Create an axios instance for Youtube API requests
 const youtubeApi = axios.create({
-  baseURL: BASE_URL,
-  params: {
-    key: API_KEY,
-  },
+    baseURL: BASE_URL,
+    timeout: 10000,
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    params: {
+        key: API_KEY,
+    },
 });
 
 // Search Youtube videos by query
@@ -68,7 +72,7 @@ export const getPopularVideos = async (
             viewCount: item.statistics.viewCount,
             likeCount: item.statistics.likeCount
         }))
-    } catch(err) {
+    } catch (err) {
         console.error('Error fetching trending YouTube videos:', err);
         throw new Error('Failed to fetch trending YouTube videos');
     }

@@ -7,22 +7,22 @@ import "./App.css";
 import {ThemeContext} from "./context/ThemeContext.tsx";
 
 const ThemedApp = () => {
-    const [mode, setMode] = useState<PaletteMode>('dark');
+    const [themeStyle, setThemeStyle] = useState<PaletteMode>('dark');
 
-    const colorMode = useMemo(
+    const themeMode = useMemo(
         () => ({
-            toggleColorMode: () => {
-                setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+            toggleThemeStyle: () => {
+                setThemeStyle((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
             },
-            mode,
+            themeStyle,
         }),
-        [mode],
+        [themeStyle],
     );
 
-    const theme = useMemo(() => createAppTheme(mode), [mode]);
+    const theme = useMemo(() => createAppTheme(themeStyle), [themeStyle]);
 
     return (
-        <ThemeContext value={colorMode}>
+        <ThemeContext value={themeMode}>
             <ThemeProvider theme={theme}>
                 <CssBaseline /> {/* This normalizes styles and applies theme background */}
                 <App />
