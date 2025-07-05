@@ -1,15 +1,10 @@
-import { StrictMode, useState, useMemo, createContext } from "react";
+import { StrictMode, useState, useMemo } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import { ThemeProvider, CssBaseline, type PaletteMode } from "@mui/material";
 import { createAppTheme } from "./styles/theme.ts";
 import "./App.css";
-
-// Create a theme context
-export const ColorModeContext = createContext({
-    toggleColorMode: () => {},
-    mode: 'light' as PaletteMode
-});
+import {ThemeContext} from "./context/ThemeContext.tsx";
 
 const ThemedApp = () => {
     const [mode, setMode] = useState<PaletteMode>('light');
@@ -27,12 +22,12 @@ const ThemedApp = () => {
     const theme = useMemo(() => createAppTheme(mode), [mode]);
 
     return (
-        <ColorModeContext.Provider value={colorMode}>
+        <ThemeContext value={colorMode}>
             <ThemeProvider theme={theme}>
                 <CssBaseline /> {/* This normalizes styles and applies theme background */}
                 <App />
             </ThemeProvider>
-        </ColorModeContext.Provider>
+        </ThemeContext>
     );
 };
 
