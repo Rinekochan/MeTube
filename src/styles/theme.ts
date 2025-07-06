@@ -14,6 +14,7 @@ const getDesignTokens = (mode: PaletteMode) => ({
           text: {
             primary: '#000000',
             secondary: '#767575',
+            opposite: '#FFFFFF',
             active: '#FF0073'
           },
           divider: '#767575',
@@ -31,6 +32,7 @@ const getDesignTokens = (mode: PaletteMode) => ({
           text: {
             primary: '#FFFFFF',
             secondary: '#B6B6B6',
+            opposite: '#000000',
             active: '#FFFFFF',
           },
           divider: '#59525F',

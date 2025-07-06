@@ -161,7 +161,7 @@ export const getChannelDetails = async (
 
         const item = response.data.items[0];
         return {
-            thumbnailUrl: item.snippet.thumbnails.standard.url,
+            thumbnailUrl: item.snippet.thumbnails.default.url,
             subscriberCount: item.statistics.subscriberCount
         };
     } catch (err) {
