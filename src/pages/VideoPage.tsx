@@ -8,6 +8,7 @@ import VideoPlayer from "../components/features/player/VideoPlayer";
 import ChannelInfo from "../components/features/player/ChannelInfo";
 import VideoStats from "../components/features/player/VideoStats";
 import VideoDescription from "../components/features/player/VideoDescription";
+import VideoPageSkeleton from "../components/features/player/VideoPageSkeleton";
 
 const VideoPage = () => {
     const {id} = useParams<{ id: string }>();
@@ -45,6 +46,11 @@ const VideoPage = () => {
         });
 
     }, [id]);
+
+    // Display the skeleton while loading
+    if (loading) {
+        return <VideoPageSkeleton />;
+    }
 
     if (error || !video) {
         return (
