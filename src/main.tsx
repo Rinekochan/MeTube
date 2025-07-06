@@ -22,12 +22,12 @@ const ThemedApp = () => {
     const theme = useMemo(() => createAppTheme(themeStyle), [themeStyle]);
 
     return (
-        <ThemeContext value={themeMode}>
+        <ThemeContext.Provider value={themeMode}>
             <ThemeProvider theme={theme}>
                 <CssBaseline /> {/* This normalizes styles and applies theme background */}
                 <App />
             </ThemeProvider>
-        </ThemeContext>
+        </ThemeContext.Provider>
     );
 };
 

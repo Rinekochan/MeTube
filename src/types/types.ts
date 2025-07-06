@@ -4,10 +4,17 @@ export interface VideoResponse {
     title: string;
     description: string;
     thumbnailUrl: string;
+    channelId: string;
     channelTitle: string;
     publishedAt: string;
     viewCount?: string;
     likeCount?: string;
+}
+
+// Type for Channel API Response
+export interface ChannelResponse {
+    thumbnailUrl: string;
+    subscriberCount: string;
 }
 
 // Type for Search Results
