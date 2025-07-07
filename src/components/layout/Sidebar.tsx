@@ -2,7 +2,7 @@ import {Box, styled, Typography} from '@mui/material';
 import {Link, useLocation} from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
 import StarIcon from '@mui/icons-material/Star';
-import { useSidebar } from '../../hooks/useSidebar';
+import {useSidebarContext} from "../../context/SidebarContext.tsx";
 
 const SidebarContainer = styled(Box, {
     shouldForwardProp: (prop) => prop !== 'collapsed'
@@ -50,7 +50,7 @@ const NavText = styled(Typography, {
 
 const Sidebar = () => {
     const location = useLocation();
-    const { collapsed } = useSidebar();
+    const { collapsed } = useSidebarContext();
 
     return (
         <SidebarContainer collapsed={collapsed}>

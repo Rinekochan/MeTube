@@ -9,7 +9,8 @@ const getDesignTokens = (mode: PaletteMode) => ({
           // Light mode
           background: {
             default: '#FBFBFB',
-            paper: '#FBFBFB',
+            paper: '#D9D9D9',
+            opposite: '#120D16',
           },
           text: {
             primary: '#000000',
@@ -27,13 +28,14 @@ const getDesignTokens = (mode: PaletteMode) => ({
           // Dark mode
           background: {
             default: '#120D16',
-            paper: '#120D16',
+            paper: '#2C2B35',
+            opposite: '#FBFBFB',
           },
           text: {
-            primary: '#FFFFFF',
+            primary: '#FBFBFB',
             secondary: '#B6B6B6',
             opposite: '#000000',
-            active: '#FFFFFF',
+            active: '#FBFBFB',
           },
           divider: '#59525F',
           custom: {

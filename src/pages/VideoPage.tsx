@@ -1,13 +1,13 @@
 import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import {getVideoDetails, getChannelDetails} from "../api/youtube";
-import type {VideoResponse, ChannelResponse} from "..types/types";
+import type {VideoResponse, ChannelResponse} from "../types/types.ts";
 import {Box, Typography, Divider} from "@mui/material";
 
 import VideoPlayer from "../components/features/player/VideoPlayer";
 import ChannelInfo from "../components/features/player/ChannelInfo";
 import VideoStats from "../components/features/player/VideoStats";
-import VideoDescription from "../components/features/player/VideoDescription";
+import FavoritesButton from "../components/features/favourites/FavoritesButton";
 import VideoPageSkeleton from "../components/features/player/VideoPageSkeleton";
 
 const VideoPage = () => {
@@ -63,43 +63,46 @@ const VideoPage = () => {
     }
 
     return (
-        <Box>
-            {/* Video Player */}
-            <VideoPlayer videoId={video.id} title={video.title}/>
+    <Box sx={{my: 4, mx: 18}}>
+        {/* Video Player */}
+        <VideoPlayer videoId={video.id} title={video.title} />
 
-            {/* Video Title */}
-            <Typography variant="h5" sx={{fontWeight: "bold", mb: 2}}>
-                {video.title}
-            </Typography>
+        <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 6, p: 2 }}>
+            <Box sx={{ flex: 1 }}>
+                {/* Channel Info */}
+                <Box sx={{ mb: 3 }}>
+                    <ChannelInfo
+                        channelTitle={video.channelTitle}
+                        subscriberCount={channelDetails?.subscriberCount}
+                        thumbnailUrl={channelDetails?.thumbnailUrl}
+                    />
+                </Box>
 
-            {/* Channel Info */}
-            <Box
-                sx={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    mb: 3
-                }}
-            >
-                <ChannelInfo
-                    channelTitle={video.channelTitle}
-                    subscriberCount={channelDetails?.subscriberCount}
-                    thumbnailUrl={channelDetails?.thumbnailUrl}
-                />
+                {/* Video Title */}
+                <Typography variant="h5" sx={{ fontWeight: "bold", mb: 3 }}>
+                    {video.title}
+                </Typography>
+
+                {/* Video Description */}
+                <Typography variant="body1" sx={{ whiteSpace: "pre-line", mb: 4, color: "text.secondary" }}>
+                    {video.description}
+                </Typography>
             </Box>
 
-            <Divider sx={{my: 2}}/>
+            <Box sx={{ minWidth: "200px", display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
+                <Box sx={{ mb: 3 }}>
+                    <FavoritesButton video={video} />
+                </Box>
 
-            {/* Video Stats */}
-            <VideoStats
-                viewCount={video.viewCount}
-                likeCount={video.likeCount}
-                publishedAt={video.publishedAt}
-            />
-
-            {/* Video Description */}
-            <VideoDescription description={video.description}/>
+                {/* Video Stats */}
+                <VideoStats
+                    viewCount={video.viewCount}
+                    likeCount={video.likeCount}
+                    publishedAt={video.publishedAt}
+                />
+            </Box>
         </Box>
+    </Box>
     );
 };
 

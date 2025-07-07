@@ -19,8 +19,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import SettingsIcon from '@mui/icons-material/Settings';
 import {useNavigate} from 'react-router-dom';
 import {ThemeContext} from '../../context/ThemeContext';
+import {useSidebarContext} from "../../context/SidebarContext.tsx";
 import {useContext} from 'react';
-import {useSidebar} from '../../hooks/useSidebar';
 import Logo from '../../assets/Logo.png';
 
 const LogoContainer = styled(Box)({
@@ -67,7 +67,7 @@ const Header = () => {
     const [settingsOpen, setSettingsOpen] = useState(false);
     const navigate = useNavigate();
     const {toggleThemeStyle, themeStyle} = useContext(ThemeContext);
-    const { toggleSidebar } = useSidebar();
+    const { toggleSidebar } = useSidebarContext();
 
     const handleSearchSubmit = (e: React.KeyboardEvent) => {
         if (e.key === 'Enter' && searchQuery.trim()) {

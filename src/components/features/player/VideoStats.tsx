@@ -38,8 +38,9 @@ const VideoStats = ({ viewCount, likeCount, publishedAt }: VideoStatsProps) => {
         <Box
             sx={{
                 display: "flex",
+                flexDirection: { xs: "row", sm: "column" },
                 flexWrap: "wrap",
-                gap: 4,
+                gap: 2,
                 mb: 3
             }}
         >
