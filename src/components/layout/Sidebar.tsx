@@ -19,7 +19,7 @@ const SidebarContainer = styled(Box, {
     alignItems: 'center',
     paddingTop: '90px',
     zIndex: 10,
-    transition: 'left 0.15s ease-in-out',
+    transition: 'left 0.2s ease-in-out',
 }));
 
 const NavItem = styled(Box, {

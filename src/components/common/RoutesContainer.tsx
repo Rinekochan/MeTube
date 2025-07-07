@@ -13,7 +13,8 @@ const RoutesContainer = () => {
             minHeight: '100vh',
             ml: collapsed ? '0px' : '64px',
             mt: '64px',
-            p: 4
+            p: 4,
+            transition: 'margin-left 0.2s ease-in-out',
         }}>
             <Routes>
                 <Route path={"/"} element={<HomePage/>}/>
