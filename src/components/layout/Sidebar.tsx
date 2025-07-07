@@ -7,31 +7,32 @@ import {useSidebarContext} from "../../context/SidebarContext.tsx";
 const SidebarContainer = styled(Box, {
     shouldForwardProp: (prop) => prop !== 'collapsed'
 })<{ collapsed?: boolean }>(({ theme, collapsed }) => ({
-    width: collapsed ? '65px' : 'auto',
+    width: '65px',
     height: '100vh',
     backgroundColor: theme.palette.background.default,
     borderRight: `1px solid ${theme.palette.divider}`,
     position: 'fixed',
     top: 0,
-    left: 0,
+    left: collapsed ? -100 : 0,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     paddingTop: '90px',
     zIndex: 10,
+    transition: 'left 0.15s ease-in-out',
 }));
 
 const NavItem = styled(Box, {
-    shouldForwardProp: (prop) => prop !== 'active' && prop !== 'collapsed'
-})<{ active?: boolean, collapsed?: boolean }>(({theme, active, collapsed}) => ({
-    width: collapsed ? '60%' : 'auto',
+    shouldForwardProp: (prop) => prop !== 'active'
+})<{ active?: boolean, collapsed?: boolean }>(({theme, active}) => ({
+    width: '60%',
     display: 'flex',
-    flexDirection: collapsed ? 'column' : 'row',
+    flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: collapsed ? 'center' : 'flex-start',
-    margin: collapsed ? 'auto' : 'auto 8px',
-    padding: collapsed ? '12px 30px' : '12px 20px 12px 12px',
-    gap: collapsed ? '0px' : '8px',
+    justifyContent: 'center',
+    margin: 'auto',
+    padding: '12px 30px',
+    gap: '0px',
     borderRadius: '16px',
     color: active ? theme.palette.text.active : theme.palette.text.secondary,
     cursor: 'pointer',
@@ -40,12 +41,10 @@ const NavItem = styled(Box, {
     }
 }));
 
-const NavText = styled(Typography, {
-    shouldForwardProp: (prop) => prop !== 'collapsed'
-})<{ collapsed?: boolean }>(({ collapsed }) => ({
-    fontSize: collapsed ? '12px' : '14px',
+const NavText = styled(Typography)(() => ({
+    fontSize: '12px',
     marginTop: '2px',
-    marginLeft: collapsed ? 0 : '8px',
+    marginLeft: 0,
 }));
 
 const Sidebar = () => {
@@ -57,13 +56,13 @@ const Sidebar = () => {
             <Link to="/" style={{textDecoration: 'none', width: '100%'}}>
                 <NavItem active={location.pathname === '/'} collapsed={collapsed}>
                     <HomeIcon fontSize="medium"/>
-                    <NavText collapsed={collapsed}>Home</NavText>
+                    <NavText>Home</NavText>
                 </NavItem>
             </Link>
             <Link to="/favourite" style={{textDecoration: 'none', width: '100%'}}>
                 <NavItem active={location.pathname === '/favourite'} collapsed={collapsed}>
                     <StarIcon fontSize="medium"/>
-                    <NavText collapsed={collapsed}>Favourite</NavText>
+                    <NavText>Favourite</NavText>
                 </NavItem>
             </Link>
         </SidebarContainer>

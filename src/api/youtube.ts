@@ -17,7 +17,8 @@ export const searchVideos = async (
     params: SearchParams
 ): Promise<SearchResults> => {
     try {
-        const response = await youtubeApi.get('/search', {
+        // First, search for videos
+        const searchResponse = await youtubeApi.get('/search', {
             params: {
                 part: 'snippet',
                 q: params.query,
@@ -27,16 +28,29 @@ export const searchVideos = async (
             }
         });
 
+        const videoIds = searchResponse.data.items.map((item: any) => item.id.videoId);
+
+        // Then, get detailed video information including statistics
+        const videosResponse = await youtubeApi.get('/videos', {
+            params: {
+                part: 'snippet,statistics',
+                id: videoIds.join(',')
+            }
+        });
+
         return {
-            videos: response.data.items.map((item: any) => ({
-                id: item.id.videoId,
+            videos: videosResponse.data.items.map((item: any) => ({
+                id: item.id,
                 title: item.snippet.title,
                 description: item.snippet.description,
-                thumbnailUrl: item.snippet.thumbnails.standard.url,
+                thumbnailUrl: item.snippet.thumbnails.high.url,
                 channelTitle: item.snippet.channelTitle,
-                publishedAt: item.snippet.publishedAt
+                channelId: item.snippet.channelId,
+                publishedAt: item.snippet.publishedAt,
+                viewCount: item.statistics.viewCount,
+                likeCount: item.statistics.likeCount
             })),
-            nextPageToken: response.data.nextPageToken
+            nextPageToken: searchResponse.data.nextPageToken
         };
     } catch (err) {
         console.error('Error fetching YouTube videos:', err);
