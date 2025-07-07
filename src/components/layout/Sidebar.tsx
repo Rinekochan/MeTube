@@ -59,10 +59,10 @@ const Sidebar = () => {
                     <NavText>Home</NavText>
                 </NavItem>
             </Link>
-            <Link to="/favourite" style={{textDecoration: 'none', width: '100%'}}>
-                <NavItem active={location.pathname === '/favourite'} collapsed={collapsed}>
+            <Link to="/favorites" style={{textDecoration: 'none', width: '100%'}}>
+                <NavItem active={location.pathname === '/favorites'} collapsed={collapsed}>
                     <StarIcon fontSize="medium"/>
-                    <NavText>Favourite</NavText>
+                    <NavText>Favorites</NavText>
                 </NavItem>
             </Link>
         </SidebarContainer>

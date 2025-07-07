@@ -4,6 +4,7 @@ import {Route, Routes} from "react-router-dom";
 import HomePage from "../../pages/HomePage.tsx";
 import VideoPage from "../../pages/VideoPage.tsx";
 import SearchPage from "../../pages/SearchPage.tsx";
+import FavoritesPage from "../../pages/FavoritesPage.tsx";
 
 const RoutesContainer = () => {
     const { collapsed } = useSidebarContext();
@@ -20,6 +21,7 @@ const RoutesContainer = () => {
                 <Route path={"/"} element={<HomePage/>}/>
                 <Route path={"/video/:id"} element={<VideoPage/>}/>
                 <Route path={"/search"} element={<SearchPage/>}/>
+                <Route path={"/favorites"} element={<FavoritesPage/>}/>
             </Routes>
         </Box>
     );
