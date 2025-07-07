@@ -4,6 +4,7 @@ import Header from './components/layout/Header.tsx';
 import Sidebar from './components/layout/Sidebar.tsx';
 import HomePage from './pages/HomePage.tsx';
 import VideoPage from './pages/VideoPage.tsx';
+import SearchPage from './pages/SearchPage.tsx';
 import {FavoritesProvider} from './context/FavoritesContext.tsx';
 import {SidebarProvider, useSidebarContext} from './context/SidebarContext.tsx';
 
@@ -27,6 +28,7 @@ const App = () => {
                             <Routes>
                                 <Route path={"/"} element={<HomePage/>}/>
                                 <Route path={"/video/:id"} element={<VideoPage/>}/>
+                                <Route path={"/search"} element={<SearchPage/>}/>
                             </Routes>
                         </Box>
                     </Box>

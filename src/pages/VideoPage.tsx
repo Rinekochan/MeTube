@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import {getVideoDetails, getChannelDetails} from "../api/youtube";
 import type {VideoResponse, ChannelResponse} from "../types/types.ts";
-import {Box, Typography, Divider} from "@mui/material";
+import {Box, Typography} from "@mui/material";
 
 import VideoPlayer from "../components/features/player/VideoPlayer";
 import ChannelInfo from "../components/features/player/ChannelInfo";

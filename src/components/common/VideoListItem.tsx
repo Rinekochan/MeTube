@@ -1,30 +1,49 @@
-import { Box, Card, CardContent, CardMedia, Typography, styled } from '@mui/material';
+import { Box, Typography, styled } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import type { VideoResponse } from '../../types/types';
 import { formatViewCount, formatPublishedDate } from '../../utils/formatter.ts';
 
-interface VideoCardProps {
+interface VideoListItemProps {
     video: VideoResponse;
 }
 
-const StyledCard = styled(Card)(({ theme }) => ({
-    cursor: 'pointer',
-    transition: 'transform 0.2s',
-    backgroundColor: theme.palette.background.paper,
-    height: '100%',
+const ListItemContainer = styled(Box)(({ theme }) => ({
     display: 'flex',
-    flexDirection: 'column',
+    gap: '16px',
+    cursor: 'pointer',
     borderRadius: '8px',
+    transition: 'background-color 0.2s',
     '&:hover': {
-        transform: 'scale(1.02)',
+        backgroundColor: theme.palette.mode === 'dark'
+            ? 'rgba(255, 255, 255, 0.05)'
+            : 'rgba(0, 0, 0, 0.05)',
     },
 }));
 
-const StyledCardMedia = styled(CardMedia)({
-    paddingTop: '56.25%', // 16:9 aspect ratio
+const ThumbnailContainer = styled(Box)(({ theme }) => ({
+    flexShrink: 0,
+    width: '320px',
+    height: '180px',
+    borderRadius: '8px',
+    overflow: 'hidden',
+    backgroundColor: theme.palette.background.paper,
+}));
+
+const ThumbnailImage = styled('img')({
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
 });
 
-const VideoCard = ({ video }: VideoCardProps) => {
+const ContentContainer = styled(Box)({
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    paddingTop: '8px',
+});
+
+const VideoListItem = ({ video }: VideoListItemProps) => {
     const navigate = useNavigate();
 
     const handleClick = () => {
@@ -32,15 +51,18 @@ const VideoCard = ({ video }: VideoCardProps) => {
     };
 
     return (
-        <StyledCard onClick={handleClick}>
-            <StyledCardMedia
-                image={video.thumbnailUrl}
-                title={video.title}
-            />
-            <CardContent sx={{ flexGrow: 1, p: 2 }}>
+        <ListItemContainer onClick={handleClick}>
+            <ThumbnailContainer>
+                <ThumbnailImage
+                    src={video.thumbnailUrl}
+                    alt={video.title}
+                    loading="lazy"
+                />
+            </ThumbnailContainer>
+
+            <ContentContainer>
                 <Typography
-                    variant="subtitle1"
-                    component="div"
+                    variant="h6"
                     sx={{
                         fontWeight: 'bold',
                         mb: 1,
@@ -49,32 +71,34 @@ const VideoCard = ({ video }: VideoCardProps) => {
                         display: '-webkit-box',
                         WebkitLineClamp: 2,
                         WebkitBoxOrient: 'vertical',
-                        lineHeight: '1.2em',
-                        height: 'auto'
+                        lineHeight: '1.3em',
+                        color: 'text.primary'
                     }}
                 >
                     {video.title}
                 </Typography>
+
                 <Typography
                     variant="body2"
                     color="text.secondary"
-                    sx={{ mb: 0.25 }}
+                    sx={{ mb: 0.5 }}
                 >
                     {video.channelTitle}
                 </Typography>
+
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                     {video.viewCount && (
                         <Typography variant="body2" color="text.secondary">
-                            {formatViewCount(video.viewCount, false)} views
+                            {formatViewCount(video.viewCount)} views
                         </Typography>
                     )}
                     <Typography variant="body2" color="text.secondary">
                         • {formatPublishedDate(video.publishedAt)}
                     </Typography>
                 </Box>
-            </CardContent>
-        </StyledCard>
+            </ContentContainer>
+        </ListItemContainer>
     );
 };
 
-export default VideoCard;
+export default VideoListItem;
