@@ -14,7 +14,7 @@ const SearchPage = () => {
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        const fetchSearchResults = async () : Promise<VideoResponse[]> => {
+        const fetchSearchResults = async (): Promise<VideoResponse[]> => {
             if (!query.trim()) {
                 setVideos([]);
                 setLoading(false);
@@ -58,8 +58,15 @@ const SearchPage = () => {
 
     if (error) {
         return (
-            <Box sx={{ p: 3, textAlign: 'center' }}>
-                <Typography color="error" variant="h6">
+            <Box sx={{
+                p: { xs: 2, md: 3 },
+                textAlign: 'center'
+            }}>
+                <Typography
+                    color="error"
+                    variant="h6"
+                    sx={{ fontSize: { xs: '1.125rem', md: '1.25rem' } }}
+                >
                     {error}
                 </Typography>
             </Box>
@@ -68,8 +75,15 @@ const SearchPage = () => {
 
     if (!query.trim()) {
         return (
-            <Box sx={{ p: 3, textAlign: 'center' }}>
-                <Typography variant="h6" color="text.secondary">
+            <Box sx={{
+                p: { xs: 2, md: 3 },
+                textAlign: 'center'
+            }}>
+                <Typography
+                    variant="h6"
+                    color="text.secondary"
+                    sx={{ fontSize: { xs: '1.125rem', md: '1.25rem' } }}
+                >
                     Enter a search term to find videos
                 </Typography>
             </Box>
@@ -78,8 +92,15 @@ const SearchPage = () => {
 
     if (videos.length === 0) {
         return (
-            <Box sx={{ p: 3, textAlign: 'center' }}>
-                <Typography variant="h6" color="text.secondary">
+            <Box sx={{
+                p: { xs: 2, md: 3 },
+                textAlign: 'center'
+            }}>
+                <Typography
+                    variant="h6"
+                    color="text.secondary"
+                    sx={{ fontSize: { xs: '1.125rem', md: '1.25rem' } }}
+                >
                     No videos found for "{query}"
                 </Typography>
             </Box>
@@ -87,12 +108,28 @@ const SearchPage = () => {
     }
 
     return (
-        <Box sx={{ p: 3, maxWidth: '1200px', mx: 'auto' }}>
-            <Typography variant="h5" sx={{ mb: 3, fontWeight: 'bold' }}>
+        <Box sx={{
+            p: { xs: 1, md: 3 },
+            maxWidth: '1200px',
+            mx: 'auto'
+        }}>
+            <Typography
+                variant="h5"
+                sx={{
+                    mb: { xs: 2, md: 3 },
+                    fontWeight: 'bold',
+                    fontSize: { xs: '1.25rem', md: '1.5rem' },
+                    px: { xs: 1, md: 0 }
+                }}
+            >
                 Search results for "{query}"
             </Typography>
 
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+            <Box sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: { xs: 0, md: 3 }
+            }}>
                 {videos.map((video) => (
                     <VideoListItem key={video.id} video={video} />
                 ))}

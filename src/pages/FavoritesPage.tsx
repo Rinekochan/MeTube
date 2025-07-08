@@ -17,14 +17,13 @@ const FavoritesPage = () => {
 
     const handlePageChange = (_event: React.ChangeEvent<unknown>, page: number) => {
         setCurrentPage(page);
-        // Scroll to top when changing pages
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
     if (favorites.length === 0) {
         return (
             <Box sx={{
-                p: 3,
+                p: { xs: 2, md: 3 },
                 textAlign: 'center',
                 display: 'flex',
                 flexDirection: 'column',
@@ -32,11 +31,29 @@ const FavoritesPage = () => {
                 justifyContent: 'center',
                 minHeight: '50vh'
             }}>
-                <StarIcon sx={{ mr: 1, color: 'primary.main' }} />
-                <Typography variant="h5" color="text.secondary" sx={{ mb: 1 }}>
+                <StarIcon
+                    style={{
+                        color: "theme.palette.text.active"
+                    }}
+                    sx={{
+                        fontSize: { xs: 48, md: 64 },
+                        mb: 2
+                }} />
+                <Typography
+                    variant="h5"
+                    color="text.secondary"
+                    sx={{
+                        mb: 1,
+                        fontSize: { xs: '1.25rem', md: '1.5rem' }
+                    }}
+                >
                     No favorites yet
                 </Typography>
-                <Typography variant="body1" color="text.secondary">
+                <Typography
+                    variant="body1"
+                    color="text.secondary"
+                    sx={{ fontSize: { xs: '0.875rem', md: '1rem' } }}
+                >
                     Start adding videos to your favorites to see them here
                 </Typography>
             </Box>
@@ -44,18 +61,52 @@ const FavoritesPage = () => {
     }
 
     return (
-        <Box sx={{ p: 3, maxWidth: '1200px', mx: 'auto' }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
-                <StarIcon sx={{ mr: 1, color: 'primary.main' }} />
-                <Typography variant="h5" sx={{ fontWeight: 'bold' }}>
+        <Box sx={{
+            p: { xs: 1, md: 3 },
+            maxWidth: '1200px',
+            mx: 'auto'
+        }}>
+            <Box sx={{
+                display: 'flex',
+                alignItems: 'center',
+                mb: { xs: 2, md: 3 },
+                px: { xs: 1, md: 0 }
+            }}>
+                <StarIcon
+                    style={{
+                        color: "theme.palette.text.active"
+                    }}
+                    sx={{
+                        mr: 1,
+                        fontSize: { xs: '1.5rem', md: '2rem' }
+                }} />
+                <Typography
+                    variant="h5"
+                    sx={{
+                        fontWeight: 'bold',
+                        fontSize: { xs: '1.5rem', md: '2.125rem' }
+                    }}
+                >
                     Favorites
                 </Typography>
-                <Typography variant="body1" color="text.secondary" sx={{ ml: 2 }}>
+                <Typography
+                    variant="body1"
+                    color="text.secondary"
+                    sx={{
+                        ml: 2,
+                        fontSize: { xs: '0.875rem', md: '1rem' }
+                    }}
+                >
                     ({favorites.length} video{favorites.length !== 1 ? 's' : ''})
                 </Typography>
             </Box>
 
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3, mb: 4 }}>
+            <Box sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: { xs: 0, md: 3 },
+                mb: 4
+            }}>
                 {currentVideos.map((video) => (
                     <VideoListItem key={video.id} video={video} />
                 ))}
@@ -66,7 +117,8 @@ const FavoritesPage = () => {
                     display: 'flex',
                     justifyContent: 'center',
                     mt: 4,
-                    mb: 2
+                    mb: 2,
+                    px: { xs: 1, md: 0 }
                 }}>
                     <Pagination
                         count={totalPages}
@@ -82,6 +134,7 @@ const FavoritesPage = () => {
                                 backgroundColor: 'background.paper',
                                 border: '1px solid',
                                 borderColor: 'divider',
+                                fontSize: { xs: '0.875rem', md: '1rem' },
                                 '&:hover': {
                                     backgroundColor: 'background.opposite',
                                     color: 'text.opposite',

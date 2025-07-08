@@ -109,7 +109,7 @@ export const getPopularVideosByCategory = async (
             id: item.id,
             title: item.snippet.title,
             description: item.snippet.description,
-            thumbnailUrl: item.snippet.thumbnails.standard.url,
+            thumbnailUrl: item.snippet.thumbnails.high.url,
             channelTitle: item.snippet.channelTitle,
             channelId: item.snippet.channelId,
             publishedAt: item.snippet.publishedAt,

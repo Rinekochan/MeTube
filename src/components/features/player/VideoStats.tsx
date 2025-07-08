@@ -15,14 +15,14 @@ const VideoStats = ({ viewCount, likeCount, publishedAt }: VideoStatsProps) => {
         <Box
             sx={{
                 display: "flex",
-                flexDirection: { xs: "row", sm: "column" },
+                flexDirection: "column",
                 flexWrap: "wrap",
                 gap: 2,
                 mb: 3
             }}
         >
             <Box sx={{ display: "flex", alignItems: "center" }}>
-                <VisibilityIcon sx={{ mr: 1, color: "text.secondary" }} />
+                <VisibilityIcon sx={{ mr: 1, color: "text.secondary"}} />
                 <Typography variant="body2" color="text.secondary">
                     {formatNumber(viewCount)} views
                 </Typography>

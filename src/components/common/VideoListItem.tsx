@@ -1,7 +1,7 @@
 import { Box, Typography, styled } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import type { VideoResponse } from '../../types/types';
-import { formatViewCount, formatPublishedDate } from '../../utils/formatter.ts';
+import { formatViewCount, formatPublishedDate } from '../../utils/formatter';
 
 interface VideoListItemProps {
     video: VideoResponse;
@@ -9,7 +9,6 @@ interface VideoListItemProps {
 
 const ListItemContainer = styled(Box)(({ theme }) => ({
     display: 'flex',
-    gap: '16px',
     cursor: 'pointer',
     borderRadius: '8px',
     transition: 'background-color 0.2s',
@@ -18,15 +17,35 @@ const ListItemContainer = styled(Box)(({ theme }) => ({
             ? 'rgba(255, 255, 255, 0.05)'
             : 'rgba(0, 0, 0, 0.05)',
     },
+    // Desktop layout
+    [theme.breakpoints.up('md')]: {
+        gap: '16px',
+        padding: '8px',
+        flexDirection: 'row',
+    },
+    // Mobile layout
+    [theme.breakpoints.down('md')]: {
+        flexDirection: 'column',
+        gap: '12px',
+        padding: '16px',
+    },
 }));
 
 const ThumbnailContainer = styled(Box)(({ theme }) => ({
-    flexShrink: 0,
-    width: '320px',
-    height: '180px',
     borderRadius: '8px',
     overflow: 'hidden',
     backgroundColor: theme.palette.background.paper,
+    // Desktop layout
+    [theme.breakpoints.up('md')]: {
+        flexShrink: 0,
+        width: '320px',
+        height: '180px',
+    },
+    // Mobile layout
+    [theme.breakpoints.down('md')]: {
+        width: '100%',
+        aspectRatio: '16/9',
+    },
 }));
 
 const ThumbnailImage = styled('img')({
@@ -35,13 +54,20 @@ const ThumbnailImage = styled('img')({
     objectFit: 'cover',
 });
 
-const ContentContainer = styled(Box)({
-    flex: 1,
+const ContentContainer = styled(Box)(({ theme }) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    paddingTop: '8px',
-});
+    // Desktop layout
+    [theme.breakpoints.up('md')]: {
+        flex: 1,
+        paddingTop: '8px',
+    },
+    // Mobile layout
+    [theme.breakpoints.down('md')]: {
+        gap: '4px',
+    },
+}));
 
 const VideoListItem = ({ video }: VideoListItemProps) => {
     const navigate = useNavigate();
@@ -65,14 +91,15 @@ const VideoListItem = ({ video }: VideoListItemProps) => {
                     variant="h6"
                     sx={{
                         fontWeight: 'bold',
-                        mb: 1,
                         overflow: 'hidden',
                         textOverflow: 'ellipsis',
                         display: '-webkit-box',
                         WebkitLineClamp: 2,
                         WebkitBoxOrient: 'vertical',
                         lineHeight: '1.3em',
-                        color: 'text.primary'
+                        color: 'text.primary',
+                        mb: { xs: 0.5, md: 1 },
+                        fontSize: { xs: '1rem', md: '1.25rem' }
                     }}
                 >
                     {video.title}
@@ -81,7 +108,7 @@ const VideoListItem = ({ video }: VideoListItemProps) => {
                 <Typography
                     variant="body2"
                     color="text.secondary"
-                    sx={{ mb: 0.5 }}
+                    sx={{ mb: { xs: 0.25, md: 0.5 } }}
                 >
                     {video.channelTitle}
                 </Typography>

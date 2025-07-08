@@ -23,11 +23,14 @@ import {useSidebarContext} from "../../context/SidebarContext.tsx";
 import {useContext} from 'react';
 import Logo from '../../assets/Logo.png';
 
-const LogoContainer = styled(Box)({
+const LogoContainer = styled(Box)(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',
     cursor: 'pointer',
-});
+    [theme.breakpoints.down('md')]: {
+        display: 'none',
+    },
+}));
 
 const LogoImage = styled('img')({
     height: '32px',
@@ -39,19 +42,30 @@ const LogoText = styled(Typography)({
     fontSize: '1.2rem',
 });
 
-const SearchContainer = styled(Box)({
+const SearchContainer = styled(Box)(({ theme }) => ({
     flexGrow: 1,
     maxWidth: '600px',
     margin: '0 auto',
-    transform: 'translateX(-10%)',
-    position: 'relative'
-});
+    position: 'relative',
+    [theme.breakpoints.up('md')]: {
+        transform: 'translateX(-10%)',
+        maxWidth: '450px',
+    },
+    [theme.breakpoints.down('md')]: {
+        maxWidth: 'none',
+        margin: '0 16px',
+    },
+}));
 
 const SearchInputBase = styled(InputBase)(({theme}) => ({
     backgroundColor: theme.palette.custom.searchBar,
     borderRadius: '20px',
     padding: '4px 16px',
     width: '100%',
+    [theme.breakpoints.down('sm')]: {
+        padding: '4px 12px',
+        fontSize: '14px',
+    },
 }));
 
 const StyledSearchIcon = styled(Box)(({theme}) => ({
@@ -59,7 +73,10 @@ const StyledSearchIcon = styled(Box)(({theme}) => ({
     right: '12px',
     top: '55%',
     transform: 'translateY(-48%)',
-    color: theme.palette.text.secondary
+    color: theme.palette.text.secondary,
+    [theme.breakpoints.down('sm')]: {
+        right: '8px',
+    },
 }));
 
 const Header = () => {
@@ -105,7 +122,7 @@ const Header = () => {
                             onKeyPress={handleSearchSubmit}
                         />
                         <StyledSearchIcon>
-                            <SearchIcon/>
+                            <SearchIcon sx={{ fontSize: { xs: '20px', sm: '24px' } }}/>
                         </StyledSearchIcon>
                     </SearchContainer>
 
