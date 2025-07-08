@@ -9,7 +9,7 @@ const getDesignTokens = (mode: PaletteMode) => ({
           // Light mode
           background: {
             default: '#FBFBFB',
-            paper: '#D9D9D9',
+            paper: '#F9F9F9',
             opposite: '#120D16',
           },
           text: {

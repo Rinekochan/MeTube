@@ -132,7 +132,7 @@ const VideoPage = () => {
                     </Typography>
                 </Box>
 
-                {/* Desktop Sidebar */}
+                {/* Desktop Video Stats */}
                 <Box sx={{
                     minWidth: "200px",
                     display: { xs: "none", lg: "flex" },
