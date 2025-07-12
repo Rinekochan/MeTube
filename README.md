@@ -22,8 +22,7 @@ MeTube is a responsive video streaming application built with React, TypeScript,
 
 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/videotube.git
-cd videotube
+git clone https://github.com/Rinekochan/MeTube.git
 ```
 
 2. Install dependencies
@@ -33,7 +32,7 @@ npm install
 
 3. Create a `.env` file in the root directory and add your YouTube API key. There's a sample `.env.sample` file you can copy from to have the correct format:
 ```
-VITE_YOUTUBE_API_KEY=your_youtube_api_key_here
+VITE_YOUTUBE_API_KEY=...
 ```
 Note: You can obtain a YouTube API key by following the instructions in the [YouTube Data API documentation](https://developers.google.com/youtube/v3/getting-started).
 
